@@ -104,7 +104,14 @@
                class="group glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-1 flex flex-col">
                 {{-- Image / Placeholder --}}
                 <div class="h-48 bg-gradient-to-br from-slate-800 to-slate-900 relative overflow-hidden flex items-center justify-center">
-                    <div class="text-5xl opacity-30">{{ $service->category->icon ?? '💼' }}</div>
+                    @if($service->image)
+                        <img src="{{ Storage::url($service->image) }}" class="w-full h-full object-cover" alt="{{ $service->title }}">
+                        <div class="absolute inset-0 bg-slate-900/10"></div>
+                    @elseif($service->category && $service->category->image)
+                        <img src="{{ Storage::url($service->category->image) }}" class="w-24 h-24 object-contain opacity-40" alt="{{ $service->category->name }}">
+                    @else
+                        <div class="text-6xl opacity-30">{{ $service->category->icon ?? '💼' }}</div>
+                    @endif
                     <div class="absolute top-3 left-3">
                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30">
                             ⭐ Unggulan

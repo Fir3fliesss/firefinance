@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Service;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ServiceController extends Controller
@@ -33,12 +34,17 @@ class ServiceController extends Controller
             'short_description' => ['nullable', 'string', 'max:500'],
             'description' => ['required', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
+            'image' => ['nullable', 'image', 'max:2048'],
             'is_featured' => ['boolean'],
             'is_active' => ['boolean'],
         ]);
 
         $validated['is_featured'] = $request->boolean('is_featured');
         $validated['is_active'] = $request->boolean('is_active');
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('services', 'public');
+        }
 
         Service::create($validated);
 
@@ -60,12 +66,20 @@ class ServiceController extends Controller
             'short_description' => ['nullable', 'string', 'max:500'],
             'description' => ['required', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
+            'image' => ['nullable', 'image', 'max:2048'],
             'is_featured' => ['boolean'],
             'is_active' => ['boolean'],
         ]);
 
         $validated['is_featured'] = $request->boolean('is_featured');
         $validated['is_active'] = $request->boolean('is_active');
+
+        if ($request->hasFile('image')) {
+            if ($service->image) {
+                Storage::disk('public')->delete($service->image);
+            }
+            $validated['image'] = $request->file('image')->store('services', 'public');
+        }
 
         $service->update($validated);
 
@@ -74,6 +88,10 @@ class ServiceController extends Controller
 
     public function destroy(Service $service): RedirectResponse
     {
+        if ($service->image) {
+            Storage::disk('public')->delete($service->image);
+        }
+
         $service->delete();
 
         return redirect()->route('admin.services.index')->with('success', 'Layanan berhasil dihapus.');

@@ -41,7 +41,14 @@
                         <a href="{{ route('catalog.index', array_merge(request()->except('category'), ['category' => $category->slug])) }}"
                            class="flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-all
                                   {{ $activeCategory === $category->slug ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'text-slate-400 hover:text-white hover:bg-white/5' }}">
-                            <span>{{ $category->icon }} {{ $category->name }}</span>
+                            <span class="flex items-center gap-1.5">
+                                @if($category->image)
+                                    <img src="{{ Storage::url($category->image) }}" class="w-4 h-4 object-cover rounded-sm" alt="{{ $category->name }}">
+                                @else
+                                    <span>{{ $category->icon }}</span>
+                                @endif
+                                <span>{{ $category->name }}</span>
+                            </span>
                             <span class="text-xs text-slate-600">{{ $category->services_count }}</span>
                         </a>
                         @endforeach
@@ -95,8 +102,15 @@
                     @foreach($services as $service)
                     <a href="{{ route('services.show', $service->slug) }}"
                        class="group glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-1 flex flex-col">
-                        <div class="h-40 bg-gradient-to-br from-slate-800 to-slate-900 relative flex items-center justify-center">
-                            <div class="text-5xl opacity-20">{{ $service->category->icon ?? '💼' }}</div>
+                        <div class="h-40 bg-gradient-to-br from-slate-800 to-slate-900 relative flex items-center justify-center overflow-hidden">
+                            @if($service->image)
+                                <img src="{{ Storage::url($service->image) }}" class="w-full h-full object-cover" alt="{{ $service->title }}">
+                                <div class="absolute inset-0 bg-slate-900/10"></div>
+                            @elseif($service->category && $service->category->image)
+                                <img src="{{ Storage::url($service->category->image) }}" class="w-20 h-20 object-contain opacity-40" alt="{{ $service->category->name }}">
+                            @else
+                                <div class="text-5xl opacity-20">{{ $service->category->icon ?? '💼' }}</div>
+                            @endif
                             @if($service->is_featured)
                             <div class="absolute top-3 left-3">
                                 <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30">⭐ Unggulan</span>

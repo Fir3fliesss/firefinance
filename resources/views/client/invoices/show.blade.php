@@ -24,9 +24,7 @@
         <div class="flex items-start justify-between mb-8 pb-6 border-b border-white/10">
             <div>
                 <div class="flex items-center gap-2 mb-1">
-                    <div class="w-6 h-6 bg-emerald-500 rounded-md flex items-center justify-center">
-                        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-                    </div>
+                    <img src="{{ asset('images/logo-firefinance.webp') }}" class="w-6 h-6 object-contain" alt="FireFinance Logo">
                     <span class="font-bold text-lg text-white">FireFinance</span>
                 </div>
                 <p class="text-xs text-slate-500 mt-1">Platform Jasa Keuangan Premium</p>

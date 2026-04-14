@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin') — FireFinance Admin</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta name="view-transition" content="same-origin">
+    <link rel="icon" type="image/webp" href="{{ asset('images/logo-firefinance.webp') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
@@ -19,11 +20,7 @@
     <aside class="w-64 flex-shrink-0 border-r border-white/10 glass-card flex flex-col">
         {{-- Logo --}}
         <div class="h-16 flex items-center gap-2 px-6 border-b border-white/10">
-            <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center shadow-lg shadow-emerald-500/40">
-                <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                </svg>
-            </div>
+            <img src="{{ asset('images/logo-firefinance.webp') }}" class="w-8 h-8 object-contain" alt="FireFinance Logo">
             <div>
                 <p class="font-bold text-sm">Fire<span class="text-emerald-400">Finance</span></p>
                 <p class="text-xs text-slate-500">Admin Panel</p>

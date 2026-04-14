@@ -29,13 +29,29 @@
                 @forelse($services as $service)
                 <tr class="hover:bg-white/2 transition-all">
                     <td class="px-6 py-4">
-                        <p class="font-medium text-slate-200">{{ $service->title }}</p>
-                        @if($service->is_featured)
-                        <span class="text-xs text-amber-400">⭐ Unggulan</span>
-                        @endif
+                        <div class="flex items-center gap-3">
+                            @if($service->image)
+                                <img src="{{ Storage::url($service->image) }}" class="w-10 h-10 object-cover rounded-lg border border-white/10" alt="{{ $service->title }}">
+                            @else
+                                <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-lg">{{ $service->category->icon ?? '💼' }}</div>
+                            @endif
+                            <div>
+                                <p class="font-medium text-slate-200">{{ $service->title }}</p>
+                                @if($service->is_featured)
+                                <span class="text-xs text-amber-400">⭐ Unggulan</span>
+                                @endif
+                            </div>
+                        </div>
                     </td>
                     <td class="px-6 py-4">
-                        <span class="text-slate-400 text-xs">{{ $service->category->icon }} {{ $service->category->name }}</span>
+                        <span class="text-slate-400 text-xs flex items-center gap-1.5">
+                            @if($service->category && $service->category->image)
+                                <img src="{{ Storage::url($service->category->image) }}" class="w-4 h-4 object-cover rounded-sm border border-white/10 bg-white/5" alt="{{ $service->category->name }}">
+                            @else
+                                <span>{{ $service->category->icon ?? '📁' }}</span>
+                            @endif
+                            {{ $service->category->name }}
+                        </span>
                     </td>
                     <td class="px-6 py-4 font-bold text-emerald-400">{{ $service->formatted_price }}</td>
                     <td class="px-6 py-4">

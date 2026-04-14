@@ -20,8 +20,14 @@
         <div class="lg:col-span-2 space-y-6">
             {{-- Image / Hero --}}
             <div class="glass-card rounded-2xl border border-white/10 overflow-hidden h-64 relative flex items-center justify-center">
-                <div class="text-8xl opacity-10">{{ $service->category->icon ?? '💼' }}</div>
-                <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent"></div>
+                @if($service->image)
+                    <img src="{{ Storage::url($service->image) }}" class="w-full h-full object-cover" alt="{{ $service->title }}">
+                @elseif($service->category && $service->category->image)
+                    <img src="{{ Storage::url($service->category->image) }}" class="w-32 h-32 object-contain opacity-20" alt="{{ $service->category->name }}">
+                @else
+                    <div class="text-8xl opacity-10">{{ $service->category->icon ?? '💼' }}</div>
+                @endif
+                <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent pointer-events-none"></div>
                 <div class="absolute top-4 left-4 flex items-center gap-2">
                     <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-700/80 text-slate-300 border border-white/10">{{ $service->category->icon }} {{ $service->category->name }}</span>
                     @if($service->is_featured)

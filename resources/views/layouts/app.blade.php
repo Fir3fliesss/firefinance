@@ -6,7 +6,8 @@
     <title>@yield('title', 'FireFinance') — Jasa Keuangan Premium</title>
     <meta name="description" content="@yield('meta_description', 'Platform e-commerce jasa keuangan premium. Konsultan, Financial Planner, Investasi, Asuransi, dan Perpajakan.')">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta name="view-transition" content="same-origin">
+    <link rel="icon" type="image/webp" href="{{ asset('images/logo-firefinance.webp') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -29,11 +30,7 @@
 
                 {{-- Logo --}}
                 <a href="{{ route('home') }}" class="flex items-center gap-2 group">
-                    <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center shadow-lg shadow-emerald-500/40 group-hover:shadow-emerald-500/60 transition-all">
-                        <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                        </svg>
-                    </div>
+                    <img src="{{ asset('images/logo-firefinance.webp') }}" class="w-8 h-8 object-contain" alt="FireFinance Logo">
                     <span class="font-bold text-lg tracking-tight">Fire<span class="text-emerald-400">Finance</span></span>
                 </a>
 
@@ -154,9 +151,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="md:col-span-2">
                     <div class="flex items-center gap-2 mb-4">
-                        <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-                        </div>
+                        <img src="{{ asset('images/logo-firefinance.webp') }}" class="w-8 h-8 object-contain" alt="FireFinance Logo">
                         <span class="font-bold text-lg">Fire<span class="text-emerald-400">Finance</span></span>
                     </div>
                     <p class="text-slate-400 text-sm leading-relaxed max-w-xs">Platform e-commerce jasa keuangan premium. Konsultan berpengalaman siap membantu Anda mencapai kebebasan finansial.</p>

@@ -17,6 +17,7 @@ class Category extends Model
         'slug',
         'description',
         'icon',
+        'image',
         'is_featured',
     ];
 

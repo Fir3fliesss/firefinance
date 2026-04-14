@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice {{ $invoice->invoice_number }} — FireFinance</title>
+    <link rel="icon" type="image/webp" href="{{ asset('images/logo-firefinance.webp') }}">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: #1e293b; background: #fff; }
@@ -50,8 +51,11 @@
 
         <div class="header">
             <div class="brand">
-                <div class="brand-name">Fire<span>Finance</span></div>
-                <div class="brand-sub">Platform Jasa Keuangan Premium</div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <img src="{{ asset('images/logo-firefinance.webp') }}" style="width: 28px; height: 28px; object-fit: contain;" alt="FireFinance Logo">
+                    <div class="brand-name">Fire<span>Finance</span></div>
+                </div>
+                <div class="brand-sub" style="margin-top: 8px;">Platform Jasa Keuangan Premium</div>
                 <div class="brand-sub">+62 812 3456 7890 | admin@firefinance.id</div>
             </div>
             <div class="invoice-meta">

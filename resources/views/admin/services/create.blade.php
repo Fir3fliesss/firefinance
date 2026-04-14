@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="max-w-3xl">
-    <form method="POST" action="{{ route('admin.services.store') }}" class="space-y-6">
+    <form method="POST" action="{{ route('admin.services.store') }}" enctype="multipart/form-data" class="space-y-6">
         @csrf
 
         <div class="glass-card rounded-2xl border border-white/10 p-6 space-y-5">
@@ -48,6 +48,13 @@
                 <input type="number" name="price" value="{{ old('price') }}" required min="0" step="1000" placeholder="500000"
                     class="w-full px-4 py-3 bg-white/5 border @error('price') border-red-500/50 @else border-white/10 @enderror rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-sm">
                 @error('price')<p class="mt-1 text-xs text-red-400">{{ $message }}</p>@enderror
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-1.5">Gambar Layanan (Opsional)</label>
+                <input type="file" name="image" accept="image/*"
+                     class="w-full px-4 py-2 bg-white/5 border @error('image') border-red-500/50 @else border-white/10 @enderror rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-emerald-500 file:text-white hover:file:bg-emerald-600 transition-all cursor-pointer">
+                @error('image')<p class="mt-1 text-xs text-red-400">{{ $message }}</p>@enderror
             </div>
 
             <div class="flex items-center gap-6">
